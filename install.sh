@@ -1,15 +1,16 @@
 #!/bin/bash
 
 snap install microk8s --classic
-microk8s.status enable ingress
-microk8s.status enable storage
-microk8s.status enable helm3
+microk8s.enable ingress
+microk8s.enable storage
+microk8s.enable helm3
+microk8s.enable helm
 microk8s.enable dns
 iptables -P FORWARD ACCEPT
 
 
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-crds.yaml
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-core.yaml
+microk8s.kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-crds.yaml
+microk8s.kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-core.yaml
 
 
 export ISTIO_VERSION=1.3.6
@@ -56,3 +57,7 @@ microk8s.helm template --namespace=istio-system \
 microk8s.kubectl apply -f istio-lean.yaml
 
 microk8s.kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/serving-istio.yaml
+microk8s.kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/monitoring-core.yaml
+microk8s.kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/monitoring-logs-elasticsearch.yaml
+
+microk8s.kubectl apply --filename service.yaml
