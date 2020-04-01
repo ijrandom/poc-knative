@@ -6,8 +6,6 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class TestApp {
 
@@ -16,7 +14,6 @@ public class TestApp {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
-        AtomicLong total = new AtomicLong();
         long ss = System.currentTimeMillis();
         for (int i = 0; i < COUNT; ++i) {
             int n = i;

@@ -61,3 +61,5 @@ microk8s.kubectl apply --filename https://github.com/knative/serving/releases/do
 microk8s.kubectl apply --filename https://github.com/knative/serving/releases/download/v0.13.0/monitoring-logs-elasticsearch.yaml
 
 microk8s.kubectl apply --filename service.yaml
+
+#
